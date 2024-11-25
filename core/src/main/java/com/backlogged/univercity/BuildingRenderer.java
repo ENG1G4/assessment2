@@ -18,7 +18,7 @@ public class BuildingRenderer implements Disposable, IBuildingRenderer {
   private SpriteBatch batch = new SpriteBatch();
   private ShapeRenderer shapeRenderer = new ShapeRenderer();
   private TextureAtlas buildingAtlas;
-  private boolean debugGridEnabled = false;
+  private boolean debugGridEnabled = true;
 
   /**
    * Contructs a BuildingRenderer.
@@ -112,6 +112,8 @@ public class BuildingRenderer implements Disposable, IBuildingRenderer {
     }
     shapeRenderer.end();
     Gdx.gl.glLineWidth(1);
+    //To my knowledge this does nothing, since the render has ended and a new one
+      // will need to be set up in order to draw
   }
 
   /**

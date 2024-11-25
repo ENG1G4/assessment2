@@ -131,6 +131,7 @@ public class SettingsScreen implements Screen {
    * Creates the scroll pane and fills it with all the settings options.
    */
   private void createScrollPane() {
+      //very long should be split into many many functions
     Table preferencesTable = new Table(skin);
     preferencesTable.setDebug(true);
     musicEnabledLabel = new Label("MUSIC ENABLED", skin, "lightOrangeFont");

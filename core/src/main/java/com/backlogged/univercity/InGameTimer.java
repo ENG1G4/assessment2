@@ -8,6 +8,7 @@ package com.backlogged.univercity;
  */
 public class InGameTimer {
 
+    //Why is this not in constants?
   private String[] months = { "January", "February", "March", "April", "May", "June", "July",
       "August", "September", "October", "November", "December" };
   private int monthIndex = 7;
@@ -105,6 +106,7 @@ public class InGameTimer {
       return currentTimeRemaining;
     }
     currentTimeRemaining = currentTimeRemaining - delta <= 0.f ? 0.f : currentTimeRemaining - delta;
+    // This is an awful way of doing max(0, currentTimeRemaining - delta)
 
     return currentTimeRemaining;
   }
@@ -124,6 +126,7 @@ public class InGameTimer {
    * @param delta the time in seconds since the last render.
    * @return the time since the last month update.
    */
+  // This is very bad practice, time delta should be used from libgdx directly
   public float timeElapsed(float delta) {
     if (userInvokedPause || systemInvokedPause) {
       return timeElapse;
@@ -144,7 +147,8 @@ public class InGameTimer {
    * with a standard academic timetable. If the game is paused
    * the current value is returned.
    */
-  public Integer updateYear() {
+  // Why was this returning Integer and not int?? And why is it even returning anything?
+  public int updateYear() {
     if (userInvokedPause || systemInvokedPause) {
       return year;
     }
@@ -162,6 +166,7 @@ public class InGameTimer {
    *
    * @return the current semester associated with the in-game time.
    */
+  // Why is this returning anything?
   public String updateSemester() {
 
     if (userInvokedPause || systemInvokedPause) {
@@ -191,6 +196,7 @@ public class InGameTimer {
    *
    * @return the index of the current month.
    */
+  //Again questioning why is this retunign anything
   public Integer updateMonth() {
     if (userInvokedPause || systemInvokedPause) {
       return monthIndex;

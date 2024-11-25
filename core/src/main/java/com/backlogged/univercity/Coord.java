@@ -30,8 +30,11 @@ public class Coord {
   @Override
   public int hashCode() {
     int result = (int) (row ^ (row >>> 32));
+    // row is 32 bits, so result == row always
     result = 31 * result + Integer.hashCode(column);
+    // Integer.hashCode is not doing anythign for int type
     return result;
+    // practically 31 * row + column
   }
 
   /**

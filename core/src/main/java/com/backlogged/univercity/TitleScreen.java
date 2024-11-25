@@ -30,7 +30,7 @@ public class TitleScreen implements Screen {
   private TextButton playButton;
   private TextButton optionsButton;
   private TextButton quitButton;
-  
+
   /**
    * Sets up the title screen.
    *
@@ -108,6 +108,7 @@ public class TitleScreen implements Screen {
    * and moving relative to the mouse position.
    */
   private void renderBackground() {
+      //reuse of the code from Settings screen
     float aspectRatio = 16f / 9f;
     float worldWidth = stage.getWidth();
     float worldHeight = stage.getHeight();
@@ -138,6 +139,7 @@ public class TitleScreen implements Screen {
    * unit vector</a> from the centre of the screen, towards the mouse position.
    */
   private Vector2 getMouseDirection() {
+      //reuse of the code from Settings screen
     float x = Gdx.input.getX();
     float y = Gdx.input.getY();
 
