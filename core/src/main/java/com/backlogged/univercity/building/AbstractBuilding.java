@@ -1,8 +1,11 @@
-package com.backlogged.univercity;
+package com.backlogged.univercity.building;
 
+import com.backlogged.univercity.Coord;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Represents an abstract base class for buildings that can be placed on a map.
@@ -15,28 +18,30 @@ import java.util.ArrayList;
  */
 public abstract class AbstractBuilding {
 
-  private BuildingInfo buildingInfo;
+  private final BuildingType buildingType;
+  private final Sprite sprite;
   private Coord mapPos;
 
   /**
    * Constructs an {@code AbstractBuilding} instance with the specified building
    * information.
    *
-   * @param buildingInfo Information about the building, including its type,
-   *                     sprite, tile coverage,
+   * @param buildingType Information about the building, including its type,
+   *                     sprite location, tile coverage,
    *                     and additional info.
    */
-  public AbstractBuilding(BuildingInfo buildingInfo) {
-    this.buildingInfo = buildingInfo;
+  public AbstractBuilding(BuildingType buildingType, Sprite sprite) {
+    this.buildingType = buildingType;
+    this.sprite = sprite;
   }
 
   /**
    * Retrieves the type(s) of this building.
    *
-   * @return An array of strings representing the type categories of the building.
+   * @return An immutable list of strings representing the type categories of the building.
    */
-  public final String[] getType() {
-    return buildingInfo.type;
+  public final List<String> getType() {
+    return Arrays.stream(buildingType.getBuildingAttributes()).map(BuildingAttribute::getName).toList();
   }
 
   /**
@@ -46,7 +51,7 @@ public abstract class AbstractBuilding {
    * @return The {@code Sprite} representing the building's visual appearance.
    */
   public final Sprite getSprite() {
-    return buildingInfo.buildingSprite;
+    return this.sprite;
   }
 
   /**
@@ -58,8 +63,13 @@ public abstract class AbstractBuilding {
    *         offsets for this
    *         building.
    */
-  public final ArrayList<Coord> getTileCoverageOffsets() {
-    return buildingInfo.tileCoverageOffsets;
+  public final List<Coord> getTileCoverageOffsets() {
+    return List.of(
+        new Coord(0, 0),
+        new Coord(0, 1),
+        new Coord(1, 0),
+        new Coord(1, 1)
+    );
   }
 
   /**
@@ -68,7 +78,7 @@ public abstract class AbstractBuilding {
    * @return A string containing additional information about the building.
    */
   public final String getInfo() {
-    return buildingInfo.info;
+    return buildingType.getInfo();
   }
 
   /**
@@ -101,8 +111,8 @@ public abstract class AbstractBuilding {
    * @param batch The {@code SpriteBatch} used to draw the building's sprite.
    */
   public final void draw(SpriteBatch batch) {
-    buildingInfo.buildingSprite.setPosition(this.mapPos.getRow(), this.mapPos.getColumn());
-    buildingInfo.buildingSprite.draw(batch);
-    buildingInfo.buildingSprite.setPosition(0, 0);
+    this.sprite.setPosition(this.mapPos.getRow(), this.mapPos.getColumn());
+    this.sprite.draw(batch);
+    this.sprite.setPosition(0, 0);
   }
 }

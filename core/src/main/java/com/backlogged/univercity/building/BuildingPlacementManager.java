@@ -1,5 +1,6 @@
-package com.backlogged.univercity;
+package com.backlogged.univercity.building;
 
+import com.backlogged.univercity.Coord;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import java.util.Collection;
 import java.util.HashMap;
@@ -10,8 +11,8 @@ import java.util.HashMap;
  * you can place a building at a certain location and placing a building.
  */
 public class BuildingPlacementManager implements IBuildingPlacementManager {
-  private TiledMapTileLayer terrainLayer;
-  private HashMap<Coord, AbstractBuilding> placedBuildings = new HashMap<>();
+  private final TiledMapTileLayer terrainLayer;
+  private final HashMap<Coord, AbstractBuilding> placedBuildings = new HashMap<>();
   int count = 0;
 
   /**

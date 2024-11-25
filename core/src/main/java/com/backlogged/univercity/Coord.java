@@ -52,10 +52,11 @@ public class Coord {
     if (other == this) {
       return true;
     }
-    if (other == null || !(other instanceof Coord)) {
+
+    if (!(other instanceof Coord o)) {
       return false;
     }
-    Coord o = (Coord) other;
+
     return o.getColumn() == this.column && o.getRow() == this.row;
   }
 

@@ -1,5 +1,6 @@
-package com.backlogged.univercity;
+package com.backlogged.univercity.setting;
 
+import com.backlogged.univercity.setting.Constants;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 

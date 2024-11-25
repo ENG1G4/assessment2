@@ -1,4 +1,4 @@
-package com.backlogged.univercity;
+package com.backlogged.univercity.setting;
 
 /**
  * This Class acts as a source for all constants used in the game.

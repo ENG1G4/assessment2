@@ -2,19 +2,16 @@ package com.backlogged.univercity;
 
 /**
  * Represents the timer used for the game.
- *
- * @author @Josh-White14 @nk-t14
- * @version %I%, %G%
  */
 public class InGameTimer {
 
-    //Why is this not in constants?
-  private String[] months = { "January", "February", "March", "April", "May", "June", "July",
+  //Why is this not in constants?
+  private final String[] months = { "January", "February", "March", "April", "May", "June", "July",
       "August", "September", "October", "November", "December" };
   private int monthIndex = 7;
   private float currentTimeRemaining;
   private int year;
-  private int timeInMinutes;
+  private final int timeInMinutes;
   private String semester;
   private boolean userInvokedPause = true;
   private boolean systemInvokedPause = false;
@@ -27,7 +24,7 @@ public class InGameTimer {
    * @param timeInMinutes the length of the game specified in minutes.
    */
   public InGameTimer(int timeInMinutes) {
-    currentTimeRemaining = (float) timeInMinutes * 60.f;
+    currentTimeRemaining = timeInMinutes * 60.f;
     this.timeInMinutes = timeInMinutes;
   }
 
@@ -36,8 +33,7 @@ public class InGameTimer {
    * timeInMinutes value to 5 if no input is received.
    */
   public InGameTimer() {
-    this.timeInMinutes = 5;
-    currentTimeRemaining = (float) timeInMinutes * 60.f;
+    this(5);
   }
 
   /**
@@ -89,7 +85,7 @@ public class InGameTimer {
    */
   public void resetTime() {
     userStopTime();
-    currentTimeRemaining = (float) timeInMinutes * 60.f;
+    currentTimeRemaining = timeInMinutes * 60.f;
     monthIndex = 8; // Game begins from September
   }
 
@@ -105,8 +101,7 @@ public class InGameTimer {
     if (userInvokedPause || systemInvokedPause) {
       return currentTimeRemaining;
     }
-    currentTimeRemaining = currentTimeRemaining - delta <= 0.f ? 0.f : currentTimeRemaining - delta;
-    // This is an awful way of doing max(0, currentTimeRemaining - delta)
+    currentTimeRemaining = Math.max(currentTimeRemaining - delta, 0.f);
 
     return currentTimeRemaining;
   }
