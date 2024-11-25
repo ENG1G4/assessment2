@@ -1,4 +1,4 @@
-package com.backlogged.univercity;
+package com.backlogged.univercity.building;
 
 import java.util.Collection;
 

@@ -1,5 +1,13 @@
-package com.backlogged.univercity;
+package com.backlogged.univercity.screen;
 
+import com.backlogged.univercity.building.BuildingType;
+import com.backlogged.univercity.setting.Constants;
+import com.backlogged.univercity.setting.GamePreferences;
+import com.backlogged.univercity.InGameTimer;
+import com.backlogged.univercity.Soundtrack;
+import com.backlogged.univercity.building.BuildingManager;
+import com.backlogged.univercity.building.BuildingPlacementManager;
+import com.backlogged.univercity.render.BuildingRenderer;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -72,8 +80,8 @@ public class MapScreen implements Screen {
     camera.setToOrtho(false, width * UNIT_SCALE, (width * UNIT_SCALE) * (height / width));
 
     timer = new InGameTimer(5);
-    var buildingRenderer = new BuildingRenderer(new TextureAtlas(
-        Gdx.files.internal("buildings/buildings.atlas")));
+    TextureAtlas textureAtlas = new TextureAtlas(Gdx.files.internal("buildings/buildings.atlas"));
+    var buildingRenderer = new BuildingRenderer(textureAtlas);
     buildingManager = new BuildingManager(UNIT_SCALE, buildingRenderer,
         new BuildingPlacementManager((TiledMapTileLayer) map.getLayers().get("Terrain")));
     stage = new Stage(new ScreenViewport());
@@ -118,7 +126,7 @@ public class MapScreen implements Screen {
       public void clicked(InputEvent e, float x, float y) {
         // Deal with clicking later
         buildingManager.setBuildingState();
-        buildingManager.chooseLocationOfBuilding("Accommodation");
+        buildingManager.chooseLocationOfBuilding(BuildingType.ACCOMMODATION);
       }
     });
 
@@ -127,7 +135,7 @@ public class MapScreen implements Screen {
       public void clicked(InputEvent e, float x, float y) {
         // Deal with clicking later
         buildingManager.setBuildingState();
-        buildingManager.chooseLocationOfBuilding("SportsCenter");
+        buildingManager.chooseLocationOfBuilding(BuildingType.SPORTS_CENTRE);
       }
     });
 
@@ -136,7 +144,7 @@ public class MapScreen implements Screen {
       public void clicked(InputEvent e, float x, float y) {
         // Deal with clicking later
         buildingManager.setBuildingState();
-        buildingManager.chooseLocationOfBuilding("LectureHall");
+        buildingManager.chooseLocationOfBuilding(BuildingType.LECTURE_HALL);
       }
     });
 
@@ -145,7 +153,7 @@ public class MapScreen implements Screen {
       public void clicked(InputEvent e, float x, float y) {
         // Deal with clicking later
         buildingManager.setBuildingState();
-        buildingManager.chooseLocationOfBuilding("FoodCourt");
+        buildingManager.chooseLocationOfBuilding(BuildingType.FOOD_COURT);
       }
     });
 
@@ -164,7 +172,7 @@ public class MapScreen implements Screen {
         .height(Value.percentWidth(0.072f, table));
     table.add(buildingCounterLabel).expandX().top().left().width(Value.percentWidth(0.1f, table))
     .height(Value.percentWidth(0.072f, table));
-    
+
     table.add(pauseButton).expandX().top().right().spaceRight(10)
         .width(Value.percentWidth(0.05f, table))
         .height(Value.percentWidth(0.05f, table));
@@ -316,7 +324,7 @@ public class MapScreen implements Screen {
     camera.viewportHeight = camera.viewportWidth * height / width;
     camera.update();
     stage.getViewport().update(width, height, true);
-    
+
   }
 
   @Override

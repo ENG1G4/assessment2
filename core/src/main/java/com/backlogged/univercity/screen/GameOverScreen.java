@@ -1,5 +1,8 @@
-package com.backlogged.univercity;
+package com.backlogged.univercity.screen;
 
+import com.backlogged.univercity.setting.Constants;
+import com.backlogged.univercity.setting.GamePreferences;
+import com.backlogged.univercity.Soundtrack;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;

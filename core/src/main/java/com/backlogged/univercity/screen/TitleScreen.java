@@ -1,5 +1,7 @@
-package com.backlogged.univercity;
+package com.backlogged.univercity.screen;
 
+import com.backlogged.univercity.setting.Constants;
+import com.backlogged.univercity.Soundtrack;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -30,7 +32,7 @@ public class TitleScreen implements Screen {
   private TextButton playButton;
   private TextButton optionsButton;
   private TextButton quitButton;
-  
+
   /**
    * Sets up the title screen.
    *

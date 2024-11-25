@@ -1,5 +1,7 @@
 package com.backlogged.univercity;
 
+import com.backlogged.univercity.screen.TitleScreen;
+import com.backlogged.univercity.setting.GamePreferences;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 

@@ -1,5 +1,6 @@
-package com.backlogged.univercity;
+package com.backlogged.univercity.render;
 
+import com.backlogged.univercity.building.AbstractBuilding;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import java.util.Collection;
